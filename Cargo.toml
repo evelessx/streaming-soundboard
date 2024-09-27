@@ -6,3 +6,6 @@ edition = "2021"
 [dependencies]
 native-windows-gui = "1.0.12"
 native-windows-derive = "1.0.3"
+directories = "5.0.1"
+toml = "0.8.19"
+serde = { version = "1.0.210", features=["derive"] }
