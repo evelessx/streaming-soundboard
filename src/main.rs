@@ -2,8 +2,12 @@
 extern crate native_windows_derive as nwd;
 extern crate native_windows_gui as nwg;
 
+use std::env;
+
 use nwd::NwgUi;
 use nwg::NativeUi;
+
+pub mod config;
 
 #[derive(Default, NwgUi)]
 pub struct SoundbotApp {
@@ -32,6 +36,12 @@ impl SoundbotApp {
 }
 
 fn main() {
+    // Assume first argument is path to config file
+    let args: Vec<String> = env::args().collect();
+    let conf_path = &args[1];
+    let conf = config::load_config_file(conf_path);
+    dbg!(conf);
+
     nwg::init().expect("Failed to init Native Windows GUI");
 
     let _app = SoundbotApp::build_ui(Default::default()).expect("Failed to build UI");
